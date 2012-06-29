@@ -59,16 +59,6 @@ void objReader::objLoadModel()
         while (p != e) {
                 if (memcmp(p, "v", 1) == 0) {
                         sscanf(p, "v %lf %lf %lf", &vertexArray[nV].x, &vertexArray[nV].y, &vertexArray[nV].z);
-                        if (start) {
-                                maxX = vertexArray[nV].x;
-                                maxY = vertexArray[nV].y;
-                                maxZ = vertexArray[nV].z;
-                                start = false;
-                        } else {
-                                if (vertexArray[nV].x > maxX) maxX = vertexArray[nV].x;
-                                if (vertexArray[nV].y > maxY) maxY = vertexArray[nV].y;
-                                if (vertexArray[nV].z > maxZ) maxZ = vertexArray[nV].z;
-                        }
                         nV++;
                 } else if (memcmp(p, "f", 1) == 0) {
                         sscanf(p, "f %d %d %d", &faceArray[nF].vertex[0], &faceArray[nF].vertex[1], &faceArray[nF].vertex[2]);
@@ -80,8 +70,4 @@ void objReader::objLoadModel()
 
                 while (*p++ != (char) 0x0A);
         }
-
-        if (maxX > maxY) boundaryRadius = maxX;
-        else    boundaryRadius = maxY;
-        if (boundaryRadius < maxZ) boundaryRadius = maxZ;
 }

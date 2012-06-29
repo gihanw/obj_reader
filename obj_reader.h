@@ -24,8 +24,6 @@ public:
         vector* vertexArray;
         face* faceArray;
         int nVertex, nFaces;
-        double maxX, maxY, maxZ;
-        double boundaryRadius;
 };
 
 #endif
